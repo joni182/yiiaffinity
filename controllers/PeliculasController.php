@@ -7,6 +7,7 @@ use app\models\Generos;
 use app\models\Peliculas;
 use app\models\PeliculasForm;
 use Yii;
+use yii\data\ArrayDataProvider;
 use yii\data\Sort;
 use yii\web\NotFoundHttpException;
 
@@ -72,8 +73,16 @@ class PeliculasController extends \yii\web\Controller
         // $peliculasForm = new PeliculasForm(['attributes' => $pelicula->attributes]);
         $pelicula->genero_id = $pelicula->genero->genero;
 
+        $provider = new ArrayDataProvider([
+            'allModels' => $pelicula->participaciones,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+
         return $this->render('ver', [
-            'peliculasForm' => $pelicula,
+            'pelicula' => $pelicula,
+            'dataProvider' => $provider,
         ]);
     }
 
