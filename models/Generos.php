@@ -12,6 +12,7 @@ namespace app\models;
  */
 class Generos extends \yii\db\ActiveRecord
 {
+    public $cuantas;
     /**
      * {@inheritdoc}
      */
@@ -33,6 +34,11 @@ class Generos extends \yii\db\ActiveRecord
         ];
     }
 
+    // public function attributes()
+    // {
+    //     return array_merge(parent::attributes(), ['cuantas']);
+    // }
+
     /**
      * {@inheritdoc}
      */
@@ -42,6 +48,16 @@ class Generos extends \yii\db\ActiveRecord
             'id' => 'ID',
             'genero' => 'Genero',
         ];
+    }
+
+
+    public static function findEspecial()
+    {
+        return static::find()
+            ->select(['g.*', 'COUNT(p.id) as cuantas'])
+            ->from(['g' => self::tableName()])
+            ->leftJoin('peliculas p', 'g.id = p.genero_id')
+            ->groupBy('g.id');
     }
 
     /**

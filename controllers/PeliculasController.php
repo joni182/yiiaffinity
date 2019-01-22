@@ -116,7 +116,14 @@ class PeliculasController extends \yii\web\Controller
 
     private function buscarPelicula($id)
     {
-        $fila = Peliculas::findOne($id);
+        $fila = Peliculas::find()
+            ->where(['id' => $id])
+            ->with([
+                'participaciones',
+                'participaciones.persona',
+                'participaciones.papel',
+                ])
+            ->one();
         if ($fila === null) {
             throw new NotFoundHttpException('Esa película no existe.');
         }

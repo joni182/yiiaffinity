@@ -49,7 +49,7 @@ class GenerosController extends Controller
             'totalCount' => $count,
         ]);
 
-        $filas = Generos::find()
+        $filas = Generos::findEspecial()
             ->orderBy('genero')
             ->limit($pagination->limit)
             ->offset($pagination->offset)

@@ -7,12 +7,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <table class="table table-striped">
     <thead>
         <th>Género</th>
+        <th>Nº Películas</th>
         <th>Acciones</th>
     </thead>
     <tbody>
         <?php foreach ($filas as $fila): ?>
             <tr>
                 <td><?= Html::encode($fila['genero']) ?></td>
+                <td><?= $fila->cuantas ?></td>
                 <td>
                     <?= Html::a('Modificar', ['generos/update', 'id' => $fila['id']], ['class' => 'btn-xs btn-info']) ?>
                     <?= Html::a('Ver', ['generos/ver', 'id' => $fila['id']], ['class' => 'btn-xs btn-warning']) ?>
