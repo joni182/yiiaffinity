@@ -56,7 +56,7 @@ class Generos extends \yii\db\ActiveRecord
         return static::find()
             ->select(['g.*', 'COUNT(p.id) as cuantas'])
             ->from(['g' => self::tableName()])
-            ->leftJoin('peliculas p', 'g.id = p.genero_id')
+            ->joinWith('peliculas p', false)
             ->groupBy('g.id');
     }
 
