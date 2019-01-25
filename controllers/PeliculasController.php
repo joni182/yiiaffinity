@@ -28,7 +28,9 @@ class PeliculasController extends \yii\web\Controller
             'attributes' => [
                 'titulo',
                 'anyo',
+                'precio',
                 'duracion',
+                'created_at',
                 'genero',
             ],
         ]);
